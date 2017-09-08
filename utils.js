@@ -157,16 +157,17 @@ module.exports = {
   },
 
   // shallow object extend
-  extend: function (){
+   extend: function (){
     var output = {}
-    var args = arguments
-    var l = args.length
+    var length = arguments.length
+    var keys
 
-    for ( var i = 0; i < l; i++ )
-      for ( var key in args[i] )
-        if ( args[i].hasOwnProperty(key) ){
-          output[key] = args[i][key]
-        }
+    for ( var i = 0; i < length; i++ ){
+      keys = Object.keys(arguments[i])
+      for (var k = 0; k < keys.length; k++) {
+        output[keys[k]] = arguments[i][keys[k]]
+      }
+    }
 
     return output
   },
