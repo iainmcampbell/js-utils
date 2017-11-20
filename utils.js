@@ -243,14 +243,14 @@ module.exports = {
   // cross-browser bullshit (scrollTop getter/setter)
   scrollTop: function(setTo){
     if(setTo !== undefined){
-      if(document.body.scrollTop)
-        document.body.scrollTop = setTo
-
-      if(document.documentElement.scrollTop)
-        document.documentElement.scrollTop = setTo
 
       if(window.pageYOffset)
         window.pageYOffset = setTo
+      else if(document.documentElement.scrollTop)
+        document.documentElement.scrollTop = setTo
+      else if(document.body.scrollTop)
+        document.body.scrollTop = setTo
+
     }
 
     return (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0)
