@@ -244,16 +244,15 @@ module.exports = {
   scrollTop: function(setTo){
     if(setTo !== undefined){
 
-      if(window.pageYOffset)
-        window.pageYOffset = setTo
-      else if(document.documentElement.scrollTop)
+      // window.scrollY is read-only
+      if(document.documentElement.scrollTop)
         document.documentElement.scrollTop = setTo
       else if(document.body.scrollTop)
         document.body.scrollTop = setTo
 
     }
 
-    return (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0)
+    return (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0)
   },
 
   checkScrollbarWidth: function(){
