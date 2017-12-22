@@ -128,6 +128,18 @@ module.exports = {
     if( i !== -1 ) array.splice(i,1)
   },
 
+  // usage: array.sort(sortByObjectProperty('propName'))
+  sortByObjectProperty: function(property){
+    return function(a,b){
+      if( a[property] < b[property] )
+        return -1
+      else if( a[property] > b[property] )
+        return 1
+      else
+        return 0
+    }
+  },
+
 
 
 
@@ -243,13 +255,7 @@ module.exports = {
   // cross-browser bullshit (scrollTop getter/setter)
   scrollTop: function(setTo){
     if(setTo !== undefined){
-
-      // window.scrollY is read-only
-      if(document.documentElement.scrollTop)
-        document.documentElement.scrollTop = setTo
-      else if(document.body.scrollTop)
-        document.body.scrollTop = setTo
-
+      document.documentElement.scrollTop = document.body.scrollTop = setTo
     }
 
     return (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0)
